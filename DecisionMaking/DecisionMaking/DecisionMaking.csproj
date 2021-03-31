@@ -86,6 +86,7 @@
       <DependentUpon>scoreNodesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ScoreDecision\ScoreTree.cs" />
+    <Compile Include="ScoreDecision\Tree.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

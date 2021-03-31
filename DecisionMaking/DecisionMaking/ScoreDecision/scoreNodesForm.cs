@@ -1,4 +1,5 @@
-﻿using Microsoft.Msagl.Drawing;
+﻿using DecisionMaking.ScoreDecision;
+using Microsoft.Msagl.Drawing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace DecisionMaking
         {
             this.name = name;
             InitializeComponent();
+            
             
 
             //ScoreTree tree = new ScoreTree(this.name);
@@ -45,8 +47,16 @@ namespace DecisionMaking
 
             ScoreNode root = new ScoreNode(generatedNodes++);
 
-            createTree(root, dataGridView1);
+            //createTree(root, dataGridView1);
+            //createGraph(root);
+            //List<double> thresholds = new List<double>();
+            //Tree.calculateThreshold(thresholds, dataGridView1);
+
+            Tree.createTree(root, dataGridView1);
             createGraph(root);
+
+            //foreach (double x in thresholds)
+            //    Console.WriteLine(x);
            
             
         }
@@ -58,6 +68,8 @@ namespace DecisionMaking
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph(this.name);
             graph = treeToGraph(root, graph);
             viewer.Graph = graph;
+            viewer.AutoSize = true;
+            viewer.FitGraphBoundingBox();
             form.SuspendLayout();
             form.Controls.Add(viewer);
             form.ResumeLayout();
@@ -88,7 +100,7 @@ namespace DecisionMaking
 
         private void createTree(ScoreNode root, DataGridView dataGridView1)
         {
-            
+                            
                 allocateTree(root,dataGridView1.Columns.Count-2,0);
 
             foreach(DataGridViewRow row in dataGridView1.Rows)
